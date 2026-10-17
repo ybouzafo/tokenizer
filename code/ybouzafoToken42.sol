@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
- * @title Ybouzafo (YbT42)
+ * @title test (YbT42)
  * @dev Projet Tokenizer - Standard ERC-20 / BEP-20
  */
 contract YbouzafoToken42 is ERC20, Ownable {
@@ -44,3 +44,9 @@ contract YbouzafoToken42 is ERC20, Ownable {
         _burn(msg.sender, amount * (10 ** decimals()));
     }
 }
+
+
+==================================================
+0xd9145CCE52D386f254917e481eB44e9943F39138 : contrat adress 
+0x91f88436286def276fb942168330830312c6f58239718082b822aea5af27f5c3  : transaction hash
+view in sepoila : https://sepolia.etherscan.io/tx/0x91f88436286def276fb942168330830312c6f58239718082b822aea5af27f5c3
