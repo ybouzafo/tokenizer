@@ -13,7 +13,7 @@ Un guide pas à pas, pensé pour les débutants, pour déployer un token ERC-20 
 | Nom | YbouzafoToken42 |
 | Symbole | `YbT42` |
 | Décimales | `18` |
-| Offre initiale | 1 000 000 YbT42 |
+| Offre initiale | 1 000 YbT42 |
 | Réseau | Testnet Sepolia |
 | Compilateur | Solidity `0.8.20` |
 | Fonctions | `mint` (propriétaire uniquement), `transfer`, `burn`, `balanceOf`, `totalSupply`, `owner` |
@@ -54,20 +54,18 @@ Un guide pas à pas, pensé pour les débutants, pour déployer un token ERC-20 
 ## Étape 1 — Créer un portefeuille MetaMask
 
 1. Allez sur [metamask.io](https://metamask.io) et cliquez sur **Download**.
-2. Installez l'extension de navigateur (Chrome ou Firefox recommandés).
+2. Installez l'extension de navigateur .
 3. Cliquez sur **Create a new wallet**.
 4. Choisissez un mot de passe solide.
 5. Notez votre **phrase secrète de récupération** (12 mots) et gardez-la en lieu sûr, hors ligne. Si vous la perdez, vous perdez l'accès au portefeuille pour toujours.
 6. Confirmez la phrase quand on vous le demande.
 7. Votre portefeuille est prêt. Votre adresse publique (qui commence par `0x...`) s'affiche en haut de l'écran.
 
-> ⚠️ **Ne partagez jamais votre phrase secrète de récupération ni votre clé privée**, pas même avec un faucet, un site web ou une personne qui propose du « support ». Seule votre adresse publique est nécessaire.
+ **Ne partagez jamais votre phrase secrète de récupération ni votre clé privée**, pas même avec un faucet, un site web ou une personne qui propose du « support ». Seule votre adresse publique est nécessaire.
 
 ---
 
 ## Étape 2 — Activer et sélectionner le testnet Sepolia
-
-MetaMask masque les réseaux de test par défaut. Les menus changent un peu selon les versions, utilisez donc le chemin qui correspond à votre écran.
 
 **Activer les réseaux de test**
 
@@ -76,19 +74,17 @@ MetaMask masque les réseaux de test par défaut. Les menus changent un peu selo
 
 **Sélectionner Sepolia**
 
-> 💡 L'écran **Manage networks** sert uniquement à configurer les réseaux. On ne peut pas y sélectionner un réseau.
+L'écran **Manage networks** sert uniquement à configurer les réseaux. On ne peut pas y sélectionner un réseau.
 
 1. Revenez à l'écran principal du portefeuille.
-2. Appuyez sur le sélecteur de réseau juste au-dessus de la liste des tokens. Dans les versions récentes, il affiche **All default networks** ; dans les anciennes, il affiche le nom du réseau actuel (par ex. « Ethereum Mainnet ») en haut de l'écran.
+2. Appuyez sur le sélecteur de réseau juste au-dessus de la liste des tokens.  Il affiche **All default networks**.
 3. Choisissez **Sepolia** dans la liste (utilisez la barre de recherche si vous ne le voyez pas).
 4. Le sélecteur affiche maintenant **Sepolia**, et votre solde est en **SepoliaETH**.
 
-**Si Sepolia est absent, ajoutez-le manuellement** (Networks → Add network → Add a network manually) :
 
 | Champ | Valeur |
 |---|---|
 | Nom du réseau | Sepolia |
-| URL RPC | `https://sepolia.drpc.org` |
 | ID de chaîne | `11155111` |
 | Symbole de la devise | `ETH` |
 | Explorateur de blocs | `https://sepolia.etherscan.io` |
@@ -106,8 +102,7 @@ Déployer un contrat coûte du gas. Sur un testnet, ce gas est gratuit.
 5. Attendez environ 30 secondes.
 6. Ouvrez MetaMask, vérifiez que Sepolia est sélectionné, et contrôlez que le solde en SepoliaETH est arrivé.
 
-> ℹ️ Vous pouvez généralement refaire une demande après 24 heures. Si ce faucet ne fonctionne pas pour vous, d'autres faucets Sepolia (Alchemy, Infura, etc.) font le même travail.
-
+> Vous pouvez généralement refaire une demande après 24 heures. Si ce faucet ne fonctionne pas pour vous.
 ---
 
 ## Étape 4 — Créer le fichier du contrat dans Remix
@@ -123,7 +118,7 @@ Déployer un contrat coûte du gas. Sur un testnet, ce gas est gratuit.
 
 1. Ouvrez l'onglet **Solidity Compiler** (l'icône « S » à gauche).
 2. Choisissez la version du compilateur **0.8.20**.
-3. Cochez **Enable optimization** (laissez runs à `200`).
+3. Cochez **Enable optimization** (laissez runs à `200`). (obtimization :pour que le deploiement coute moin cher de gas / 200 : estime combien de fois le contrat sera appelé pendant sa vie. Ce nombre guide le compilateur a privilégié un compromis équilibré  )
 4. Cliquez sur **Compile YbouzafoToken42.sol**.
 5. Une coche verte signifie que c'est réussi. Un avertissement sur l'identifiant de licence SPDX manquant est sans danger.
 
@@ -171,9 +166,9 @@ Une fois déployé, votre contrat existe en permanence sur Sepolia. Vous n'avez 
    - Symbole : `YbT42`
    - Décimales : `18`
 4. Cliquez sur **Next**, puis **Import**.
-5. Vous devriez maintenant voir **1 000 000 YbT42** dans votre portefeuille.
+5. Vous devriez maintenant voir **1 000 YbT42** dans votre portefeuille.
 
-> ℹ️ Si le solde n'apparaît pas tout de suite, c'est généralement un délai d'affichage de MetaMask. **Remix (`balanceOf`)** et **Sepolia Etherscan** affichent toujours le solde réel.
+>  Si le solde n'apparaît pas tout de suite, c'est généralement un délai d'affichage de MetaMask. **Remix (`balanceOf`)** et **Sepolia Etherscan** affichent toujours le solde réel.
 
 ---
 
@@ -192,20 +187,8 @@ Toutes les actions se font dans Remix sous **Deployed Contracts** → développe
 
 **À propos des montants et des décimales**
 
-Le token a 18 décimales, donc les soldes sont renvoyés en wei : 1 000 000 de tokens = `1000000000000000000000000`. Selon la façon dont le contrat est écrit, `amount` dans `mint`, `transfer` et `burn` peut être attendu en tokens entiers (par ex. `500`) ou en wei (par ex. `500000000000000000000` pour 500 tokens). Vérifiez le code du contrat et testez d'abord avec une petite valeur.
+Le token a 18 décimales, donc les soldes sont renvoyés en wei : 1 000 de tokens = `1000000000000000000000`. Selon la façon dont le contrat est écrit, `amount` dans `mint`, `transfer` et `burn` peut être attendu en tokens entiers (par ex. `500`) ou en wei (par ex. `500000000000000000000` pour 500 tokens). Vérifiez le code du contrat et testez d'abord avec une petite valeur.
 
----
-
-## Dépannage
-
-| Problème | Solution |
-|---|---|
-| Sepolia n'est pas dans la liste des réseaux | Activez **Show test networks**, ou ajoutez le réseau manuellement (voir l'étape 2) |
-| Je ne peux pas appuyer sur Sepolia dans « Manage networks » | Cet écran sert uniquement à la configuration. Revenez en arrière et utilisez le sélecteur au-dessus de la liste des tokens |
-| Le solde affiche 0 SepoliaETH | Demandez des fonds à un faucet et vérifiez que Sepolia est bien le réseau sélectionné |
-| Le bouton Deploy ne fait rien ou échoue | Vérifiez que MetaMask est sur Sepolia, que l'environnement est **Injected Provider**, et que vous avez assez de SepoliaETH |
-| `mint` échoue | Seul le propriétaire du contrat peut minter. Utilisez le portefeuille qui l'a déployé (vérifiez avec `owner`) |
-| Le solde YbT42 n'apparaît pas dans MetaMask | Importez le token (étape 9), puis vérifiez avec `balanceOf` ou Etherscan |
 
 ---
 
@@ -213,4 +196,3 @@ Le token a 18 décimales, donc les soldes sont renvoyés en wei : 1 000 000 de t
 
 - Gardez votre phrase secrète de récupération hors ligne et privée.
 - Utilisez un **portefeuille séparé pour les tests**, pas celui qui contient de vrais fonds.
-- Les tokens de testnet n'ont aucune valeur, mais les bonnes habitudes prises ici serviront sur le mainnet.

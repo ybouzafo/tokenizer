@@ -11,8 +11,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  */
 contract YbouzafoToken42 is ERC20, Ownable {
 
-    // Événement personnalisé pour suivre la création de tokens
-    event TokensMinted(address indexed to, uint256 amount);
 
     /**
      * @dev Constructeur exécuté une seule fois lors du déploiement.
@@ -33,7 +31,6 @@ contract YbouzafoToken42 is ERC20, Ownable {
      */
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount * (10 ** decimals()));
-        emit TokensMinted(to, amount);
     }
 
     /**
@@ -46,10 +43,5 @@ contract YbouzafoToken42 is ERC20, Ownable {
 }
 
 
-==================================================
-0xdE79a24Bf89d69f824c0a7DA3a972ae8a05cec7B : contrat adress 
-0x91f88436286def276fb942168330830312c6f58239718082b822aea5af27f5c3  : transaction hash
-view in sepoila : https://sepolia.etherscan.io/tx/0x91f88436286def276fb942168330830312c6f58239718082b822aea5af27f5c3
 
 
-0xe2d5ead878eed2acda675e312c41a71c7cd43287 : accont1
